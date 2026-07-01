@@ -56,9 +56,16 @@ Depending on the targeted difficulty of the problem, test-time compute scales ac
     *   *Significance:* To solve a highly difficult Math Olympiad problem, engineers scale up the token generation cap budget (e.g., allowing the model to write 10,000+ tokens of hidden thoughts), expanding model capability without touching base weights.
 
 ```mermaid
-Compute Allocation Power-Law FrontierHigh
- ┌─────────────────────────────────────────────────────────/───│                                                       / [Elite Proving]│                                                      /  (10k+ Tokens)│                                             ┌───────/Task    │                                             │ [Deep Debugging]Accuracy│                                     ┌───────┘ (1,000 Tokens)│                             ┌───────┘│                     ┌───────┘ [Standard Chat]│             ┌───────┘         (0 Tokens / Constant Time)Low └─────────────┴───────────────────────────────────────────────
- Low (System 1)                                     High (System 2)
+flowchart LR
+    A["Standard Chat<br/>(≈0 Reasoning Tokens<br/>Constant Time)"]
+    --> B["Deep Debugging<br/>(≈1,000 Reasoning Tokens)"]
+    --> C["Elite Proving<br/>(10k+ Reasoning Tokens)"]
+
+    X["Low Compute<br/>(System 1)"] -.-> A
+    Y["High Compute<br/>(System 2)"] -.-> C
+
+    A -. Lower Accuracy .-> B
+    B -. Higher Accuracy .-> C
 ```
 
  Test-Time Compute Budget
