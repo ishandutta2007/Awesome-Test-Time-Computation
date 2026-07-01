@@ -32,15 +32,15 @@ The implementation of inference-time scaling has transitioned from classical gam
 
 Test-Time Computation methodologies are strictly categorized based on whether they scale compute via parallel continuous sampling, explicit tree searches, or token-level verifications.
 
-### A. Parallel Sampling & Majority Voting (Best-of-N / Self-Consistency)
-*   **Mechanism:** The simplest, most parallelizable form of inference compute scaling. The system samples N independent, parallel responses from a model at a high decoding temperature simultaneously. It then applies an automated verifier or a token-level **Majority Vote (Self-Consistency)** to extract the most mathematically frequent or statistically coherent final answer.
-*   **Pros:** Requires zero changes to the underlying model code and maps out flat horizontal scaling loops easily over large server clusters.
+- ### A. Parallel Sampling & Majority Voting (Best-of-N / Self-Consistency)
+	*   **Mechanism:** The simplest, most parallelizable form of inference compute scaling. The system samples N independent, parallel responses from a model at a high decoding temperature simultaneously. It then applies an automated verifier or a token-level **Majority Vote (Self-Consistency)** to extract the most mathematically frequent or statistically coherent final answer.
+	*   **Pros:** Requires zero changes to the underlying model code and maps out flat horizontal scaling loops easily over large server clusters.
 
-### B. Tree-Search & Backtracking Scaling (MCTS / DFS ToT)
-*   **Mechanism:** Structures text generation as a dynamic search tree [INDEX: 1]. At each logic milestone, a policy head generates a cluster of alternative candidate paths [INDEX: 1]. A process-supervised value model scores the viability of each branch [INDEX: 1]. If a branch score hits a dead end, a **Depth-First Search (DFS) or MCTS algorithm** forces the inference decoder to backtrack to a previous valid state tensor to explore an alternative route [INDEX: 1].
+- ### B. Tree-Search & Backtracking Scaling (MCTS / DFS ToT)
+	*   **Mechanism:** Structures text generation as a dynamic search tree [INDEX: 1]. At each logic milestone, a policy head generates a cluster of alternative candidate paths [INDEX: 1]. A process-supervised value model scores the viability of each branch [INDEX: 1]. If a branch score hits a dead end, a **Depth-First Search (DFS) or MCTS algorithm** forces the inference decoder to backtrack to a previous valid state tensor to explore an alternative route [INDEX: 1].
 
-### C. Programmatic Verifier-in-the-Loop Computing (RLVR Integration)
-*   **Mechanism:** Connects the generative token path to hard, non-neural software environments [INDEX: 17]. As the model steps through its calculations, it writes executable Python scripts or formal math proofs, passing them straight to sandboxed compilers or interactive theorem provers (ITPs) [INDEX: 17, 21]. The code execution error or compiler stack trace is fed back into the context window instantly, forcing the model to allocate test-time compute tokens specifically to fix compile errors [INDEX: 17, 21].
+- ### C. Programmatic Verifier-in-the-Loop Computing (RLVR Integration)
+	*   **Mechanism:** Connects the generative token path to hard, non-neural software environments [INDEX: 17]. As the model steps through its calculations, it writes executable Python scripts or formal math proofs, passing them straight to sandboxed compilers or interactive theorem provers (ITPs) [INDEX: 17, 21]. The code execution error or compiler stack trace is fed back into the context window instantly, forcing the model to allocate test-time compute tokens specifically to fix compile errors [INDEX: 17, 21].
 
 ---
 
