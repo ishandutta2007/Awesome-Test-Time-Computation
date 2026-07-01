@@ -107,6 +107,18 @@ Deploying variable-length test-time compute loops across commercial cloud servin
 4. Cobbe, K., et al. (2021). Training verifiers to solve math word problems. *arXiv preprint arXiv:2110.14168* [INDEX: 21].
 5. Snell, C., et al. (2024). Scaling LLM test-time compute optimally can be more effective than scaling model parameters. *arXiv preprint arXiv:2408.03314*.
 6. DeepSeek-AI. (2025). DeepSeek-R1: Incentivizing reasoning capability in LLMs via large-scale reinforcement learned test-time compute loops. *GitHub Repository Technical Report* [INDEX: 18, 21].
+---
+
+## 📈 Star History
+<div align="center">
+<a href="https://www.star-history.com/?repos=ishandutta2007%2FAwesome-Test-Time-Computation&type=date&legend=bottom-right">
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Test-Time-Computation&type=date&theme=dark&legend=bottom-right" />
+<source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Test-Time-Computation&type=date&legend=bottom-right" />
+<img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Test-Time-Computation&type=date&legend=bottom-right" />
+</picture>
+</a>
+</div>
 
 ---
 
