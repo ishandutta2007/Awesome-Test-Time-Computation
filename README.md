@@ -1,5 +1,9 @@
-# Awesome-Test-Time-Computation
-## Test-Time Computation: Evolution, Variants, Types, & Applications
+<div align="center">
+  <img src="assets/banner.svg" alt="Awesome Test-Time Computation Banner" width="100%">
+</div>
+
+# Awesome Test-Time Computation 🚀🔍
+## 🧠 Test-Time Computation: Evolution, Variants, Types, & Applications
 
 Test-Time Computation—also referred to as inference-time compute scaling, System 2 execution, or lookahead search—is an advanced architectural and prompt-engineering paradigm that scales a model’s cognitive reasoning capacity during the inference phase. Traditionally, deep learning models operate under a rigid **Constant-Time Inference Wall**: for any given input, a model executes a fixed number of floating-point operations (FLOPs) determined strictly by its parameter count, spending identical compute tokens to answer a trivial question versus a complex, multi-hop logical proof. 
 
@@ -7,7 +11,7 @@ Test-Time Computation breaks this restriction, shifting AI from rapid, intuitive
 
 ---
 
-## 1. The Macro Chronological Evolution
+## 1. ⏳ The Macro Chronological Evolution
 
 The implementation of inference-time scaling has transitioned from classical game-tree lookaheads to external programmatic prompt abstractions and native, reinforcement-learned cognitive search loops.
 
@@ -27,7 +31,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Algorithmic Search Variants
+## 2. 🧮 Core Functional & Algorithmic Search Variants
 
 Test-Time Computation methodologies are strictly categorized based on whether they scale compute via parallel continuous sampling, explicit tree searches, or token-level verifications.
 
@@ -39,7 +43,7 @@ Test-Time Computation methodologies are strictly categorized based on whether th
 
 ---
 
-## 3. Structural Scaling Profiles & Computation Horizons
+## 3. 📈 Structural Scaling Profiles & Computation Horizons
 
 Depending on the targeted difficulty of the problem, test-time compute scales across distinct execution parameters.
 
@@ -65,7 +69,7 @@ flowchart LR
 
 ---
 
-## 4. Production Engineering Challenges & Hardware Solutions
+## 4. ⚙️ Production Engineering Challenges & Hardware Solutions
 
 Deploying variable-length test-time compute loops across commercial cloud serving nodes completely disrupts traditional fixed-latency infrastructure scaling.
 
@@ -76,7 +80,7 @@ Deploying variable-length test-time compute loops across commercial cloud servin
 
 ---
 
-## 5. Frontier Real-World AI Infrastructure Applications
+## 5. 🌐 Frontier Real-World AI Infrastructure Applications
 
 | Infrastructure Application | Description & Details | Year First Used | First Paper Link |
 | :--- | :--- | :--- | :--- |
@@ -86,7 +90,7 @@ Deploying variable-length test-time compute loops across commercial cloud servin
 
 ---
 
-## References
+## 📚 References
 1. Silver, D., et al. (2017). Mastering chess and shogi by self-play with a general reinforcement learning algorithm. *arXiv preprint arXiv:1712.01815* [INDEX: 18].
 2. Wang, X., et al. (2022). Self-consistency improves chain of thought reasoning in language models. *arXiv preprint arXiv:2203.11171*.
 3. Yao, S., et al. (2023). Tree of thoughts: Deliberate problem solving with large language models. *arXiv preprint arXiv:2305.10601* [INDEX: 1].
