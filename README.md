@@ -13,7 +13,10 @@ The implementation of inference-time scaling has transitioned from classical gam
 
 
 ```mermaid
-[Classical Symbolic Lookahead (MCTS, 2016)] ───> [Programmatic Prompt Scaffolding (ToT, 2023)] ───> [Native Inference Search (o1/R1, 2024-Present)](Rigid Non-Textual State Graph Matrices)          (Fragile External Python Regex Wrappers)         (Internalized Reinforcement-Learned Thinking)
+flowchart LR
+    A["Classical Symbolic Lookahead (MCTS, 2016)<br/>(Rigid Non-Textual State Graph Matrices)"]
+    --> B["Programmatic Prompt Scaffolding (ToT, 2023)<br/>(Fragile External Python & Prompt Orchestration)"]
+    --> C["Native Inference Search (o1/R1, 2024-Present)<br/>(Internalized Reinforcement-Learned Reasoning)"]
 ```
 
 *   **The Classical Symbolic Lookahead Era (AlphaZero MCTS, ~2016–2022)**
