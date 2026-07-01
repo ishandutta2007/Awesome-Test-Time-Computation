@@ -19,15 +19,11 @@ flowchart LR
     --> C["Native Inference Search (o1/R1, 2024-Present)<br/>(Internalized Reinforcement-Learned Reasoning)"]
 ```
 
-*   **The Classical Symbolic Lookahead Era (AlphaZero MCTS, ~2016–2022)**
-    *   *Concept:* The foundational engineering baseline. Combined deep neural value networks with classical graph-theory traversal via **Monte Carlo Tree Search (MCTS)**. The network evaluated static game-board configurations, and the search graph simulated millions of future trajectory possibilities before selecting the optimal path [INDEX: 18].
-    *   *Limitation:* Bounded entirely to strict, non-textual mathematical game rules and closed environments, making it structurally incompatible with open-ended natural language reasoning.
-*   **The External Prompt Scaffolding Era (~2023–2024)**
-    *   *Concept:* Brought structured search to textual language tokens. Frameworks like **Tree-of-Thoughts (ToT)** and **Graph-of-Thoughts (GoT)** wrapped standard LLMs inside external programmatic scaffolds (Python runtime environments) [INDEX: 1]. The scaffolding directed the model to generate multiple alternative reasoning steps as individual text nodes, using separate prompt passes to score and prune paths via classical search algorithms.
-    *   *Limitation:* Heavy API latency overhead and exceptional fragility; minor variations in the text outputs frequently broke the regex string parsers, stalling execution graphs [INDEX: 1].
-*   **The Native Reinforcement-Learned Search Era (~2024–Present)**
-    *   *Concept:* The current modern state-of-the-art foundation standard. Pioneered by architectures like OpenAI’s **o1/o3** series and DeepSeek's **DeepSeek-R1** [INDEX: 18, 21]. It internalizes the tree-search and verification properties directly within the model's parameters via large-scale **Reinforcement Learning (RL)**.
-    *   *Significance:* The model generates a verbose, hidden "thinking trace" composed of special structural tokens before outputting its final response [INDEX: 1]. It naturally learns to execute self-correction, test alternative mathematical identities, and backtrack from false assumptions natively inside the generation stream [INDEX: 1].
+| Era / Phase | Description & Limitations / Significance | Year First Used | First Paper Link |
+| :--- | :--- | :--- | :--- |
+| **The Classical Symbolic Lookahead Era (AlphaZero MCTS, ~2016–2022)** | *Concept:* The foundational engineering baseline. Combined deep neural value networks with classical graph-theory traversal via **Monte Carlo Tree Search (MCTS)**. The network evaluated static game-board configurations, and the search graph simulated millions of future trajectory possibilities before selecting the optimal path [INDEX: 18].<br><br>*Limitation:* Bounded entirely to strict, non-textual mathematical game rules and closed environments, making it structurally incompatible with open-ended natural language reasoning. | 2017 | [Silver et al., 2017](https://arxiv.org/abs/1712.01815) |
+| **The External Prompt Scaffolding Era (~2023–2024)** | *Concept:* Brought structured search to textual language tokens. Frameworks like **Tree-of-Thoughts (ToT)** and **Graph-of-Thoughts (GoT)** wrapped standard LLMs inside external programmatic scaffolds (Python runtime environments) [INDEX: 1]. The scaffolding directed the model to generate multiple alternative reasoning steps as individual text nodes, using separate prompt passes to score and prune paths via classical search algorithms.<br><br>*Limitation:* Heavy API latency overhead and exceptional fragility; minor variations in the text outputs frequently broke the regex string parsers, stalling execution graphs [INDEX: 1]. | 2023 | [Yao et al., 2023](https://arxiv.org/abs/2305.10601) |
+| **The Native Reinforcement-Learned Search Era (~2024–Present)** | *Concept:* The current modern state-of-the-art foundation standard. Pioneered by architectures like OpenAI’s **o1/o3** series and DeepSeek's **DeepSeek-R1** [INDEX: 18, 21]. It internalizes the tree-search and verification properties directly within the model's parameters via large-scale **Reinforcement Learning (RL)**.<br><br>*Significance:* The model generates a verbose, hidden "thinking trace" composed of special structural tokens before outputting its final response [INDEX: 1]. It naturally learns to execute self-correction, test alternative mathematical identities, and backtrack from false assumptions natively inside the generation stream [INDEX: 1]. | 2024 | [DeepSeek-AI, 2025](https://arxiv.org/abs/2501.12948) |
 
 ---
 
@@ -35,15 +31,11 @@ flowchart LR
 
 Test-Time Computation methodologies are strictly categorized based on whether they scale compute via parallel continuous sampling, explicit tree searches, or token-level verifications.
 
-- ### A. Parallel Sampling & Majority Voting (Best-of-N / Self-Consistency)
-	*   **Mechanism:** The simplest, most parallelizable form of inference compute scaling. The system samples N independent, parallel responses from a model at a high decoding temperature simultaneously. It then applies an automated verifier or a token-level **Majority Vote (Self-Consistency)** to extract the most mathematically frequent or statistically coherent final answer.
-	*   **Pros:** Requires zero changes to the underlying model code and maps out flat horizontal scaling loops easily over large server clusters.
-
-- ### B. Tree-Search & Backtracking Scaling (MCTS / DFS ToT)
-	*   **Mechanism:** Structures text generation as a dynamic search tree [INDEX: 1]. At each logic milestone, a policy head generates a cluster of alternative candidate paths [INDEX: 1]. A process-supervised value model scores the viability of each branch [INDEX: 1]. If a branch score hits a dead end, a **Depth-First Search (DFS) or MCTS algorithm** forces the inference decoder to backtrack to a previous valid state tensor to explore an alternative route [INDEX: 1].
-
-- ### C. Programmatic Verifier-in-the-Loop Computing (RLVR Integration)
-	*   **Mechanism:** Connects the generative token path to hard, non-neural software environments [INDEX: 17]. As the model steps through its calculations, it writes executable Python scripts or formal math proofs, passing them straight to sandboxed compilers or interactive theorem provers (ITPs) [INDEX: 17, 21]. The code execution error or compiler stack trace is fed back into the context window instantly, forcing the model to allocate test-time compute tokens specifically to fix compile errors [INDEX: 17, 21].
+| Variant | Mechanism & Details | Year First Used | First Paper Link |
+| :--- | :--- | :--- | :--- |
+| **A. Parallel Sampling & Majority Voting (Best-of-N / Self-Consistency)** | **Mechanism:** The simplest, most parallelizable form of inference compute scaling. The system samples N independent, parallel responses from a model at a high decoding temperature simultaneously. It then applies an automated verifier or a token-level **Majority Vote (Self-Consistency)** to extract the most mathematically frequent or statistically coherent final answer.<br><br>**Pros:** Requires zero changes to the underlying model code and maps out flat horizontal scaling loops easily over large server clusters. | 2022 | [Wang et al., 2022](https://arxiv.org/abs/2203.11171) |
+| **B. Tree-Search & Backtracking Scaling (MCTS / DFS ToT)** | **Mechanism:** Structures text generation as a dynamic search tree [INDEX: 1]. At each logic milestone, a policy head generates a cluster of alternative candidate paths [INDEX: 1]. A process-supervised value model scores the viability of each branch [INDEX: 1]. If a branch score hits a dead end, a **Depth-First Search (DFS) or MCTS algorithm** forces the inference decoder to backtrack to a previous valid state tensor to explore an alternative route [INDEX: 1]. | 2023 | [Yao et al., 2023](https://arxiv.org/abs/2305.10601) |
+| **C. Programmatic Verifier-in-the-Loop Computing (RLVR Integration)** | **Mechanism:** Connects the generative token path to hard, non-neural software environments [INDEX: 17]. As the model steps through its calculations, it writes executable Python scripts or formal math proofs, passing them straight to sandboxed compilers or interactive theorem provers (ITPs) [INDEX: 17, 21]. The code execution error or compiler stack trace is fed back into the context window instantly, forcing the model to allocate test-time compute tokens specifically to fix compile errors [INDEX: 17, 21]. | 2021 | [Cobbe et al., 2021](https://arxiv.org/abs/2110.14168) |
 
 ---
 
@@ -51,9 +43,10 @@ Test-Time Computation methodologies are strictly categorized based on whether th
 
 Depending on the targeted difficulty of the problem, test-time compute scales across distinct execution parameters.
 
-*   **The Compute Allocation Scaling Law (Thinking Token Budgets)**
-    *   *Profile:* Much like pre-training compute scaling laws (Chinchilla parameters), test-time compute follows a highly predictable performance curve: downstream task accuracy scales as a clean power-law function of the absolute **number of thinking tokens generated at inference time**. 
-    *   *Significance:* To solve a highly difficult Math Olympiad problem, engineers scale up the token generation cap budget (e.g., allowing the model to write 10,000+ tokens of hidden thoughts), expanding model capability without touching base weights.
+| Scaling Profile | Mechanism & Significance | Year First Used | First Paper Link |
+| :--- | :--- | :--- | :--- |
+| **The Compute Allocation Scaling Law (Thinking Token Budgets)** | *Profile:* Much like pre-training compute scaling laws (Chinchilla parameters), test-time compute follows a highly predictable performance curve: downstream task accuracy scales as a clean power-law function of the absolute **number of thinking tokens generated at inference time**.<br><br>*Significance:* To solve a highly difficult Math Olympiad problem, engineers scale up the token generation cap budget (e.g., allowing the model to write 10,000+ tokens of hidden thoughts), expanding model capability without touching base weights. | 2024 | [Snell et al., 2024](https://arxiv.org/abs/2408.03314) |
+| **Test-Time Speculative Verification** | *Profile:* Optimizes token serving overhead. A lightweight, hyper-fast draft model generates rapid candidate thinking traces, while a massive target model evaluates the entire block of speculative thought tokens in a single parallelized matrix pass, protecting user-facing latency. | 2022 | [Leviathan et al., 2023](https://arxiv.org/abs/2211.17192) |
 
 ```mermaid
 flowchart LR
@@ -69,8 +62,6 @@ flowchart LR
 ```
 
  Test-Time Compute Budget
-*   **Test-Time Speculative Verification**
-    *   *Profile:* Optimizes token serving overhead. A lightweight, hyper-fast draft model generates rapid candidate thinking traces, while a massive target model evaluates the entire block of speculative thought tokens in a single parallelized matrix pass, protecting user-facing latency.
 
 ---
 
@@ -78,23 +69,20 @@ flowchart LR
 
 Deploying variable-length test-time compute loops across commercial cloud serving nodes completely disrupts traditional fixed-latency infrastructure scaling.
 
-*   **The Key-Value (KV) Cache Satiation and VRAM Footprint Crisis**
-    *   *The Problem:* Because models must write thousands of verbose, intermediate thinking tokens before delivering a final response, the active Key-Value attention cache inflates aggressively. This consumes immense amounts of GPU VRAM per user session, triggering cluster-wide Out-of-Memory system crashes and capping serving concurrency.
-    *   *Mitigation:* Implementing **Multi-Head Latent Attention (MLA)** to compress cached attention matrices down into a low-rank latent vector, coupled with **PagedAttention virtual memory mapping** to optimize tensor slot allocations non-contiguously.
-*   **The Time-to-First-Token (TTFT) and User Latency Gap**
-    *   *The Problem:* In consumer-facing production streams (like chat assistants), users expect response loops to initiate within milliseconds. A test-time search model that spends 30 seconds calculating alternative hypotheses behind a hidden thinking layer creates a highly latent user experience.
-    *   *Mitigation:* Implementing **Streaming Thoughts UI Scaffolding** (rendering a live, interactive summary accordion of the model's real-time hidden thinking tokens to keep the user engaged), combined with **Chunked Prefill kernels** to streamline execution.
+| Production Challenge | Description & Mitigation | Year First Used | First Paper Link |
+| :--- | :--- | :--- | :--- |
+| **The Key-Value (KV) Cache Satiation and VRAM Footprint Crisis** | *The Problem:* Because models must write thousands of verbose, intermediate thinking tokens before delivering a final response, the active Key-Value attention cache inflates aggressively. This consumes immense amounts of GPU VRAM per user session, triggering cluster-wide Out-of-Memory system crashes and capping serving concurrency.<br><br>*Mitigation:* Implementing **Multi-Head Latent Attention (MLA)** to compress cached attention matrices down into a low-rank latent vector, coupled with **PagedAttention virtual memory mapping** to optimize tensor slot allocations non-contiguously. | 2023 | [Kwon et al., 2023](https://arxiv.org/abs/2309.06180) |
+| **The Time-to-First-Token (TTFT) and User Latency Gap** | *The Problem:* In consumer-facing production streams (like chat assistants), users expect response loops to initiate within milliseconds. A test-time search model that spends 30 seconds calculating alternative hypotheses behind a hidden thinking layer creates a highly latent user experience.<br><br>*Mitigation:* Implementing **Streaming Thoughts UI Scaffolding** (rendering a live, interactive summary accordion of the model's real-time hidden thinking tokens to keep the user engaged), combined with **Chunked Prefill kernels** to streamline execution. | 2023 | [Agrawal et al., 2023](https://arxiv.org/abs/2308.16369) |
 
 ---
 
 ## 5. Frontier Real-World AI Infrastructure Applications
 
-*   **Automated Competitive Mathematics Proving & Science Discoveries**
-    *   *Application:* Solves extreme combinatorial reasoning puzzles, International Math Olympiads (IMO), and chemistry simulation derivations. By scaling up test-time search compute over Lean 4 or SymPy verifiers, models autonomously test identities, cross-reference data boundaries, and evaluate millions of symbolic paths to generate provably correct scientific proofs [INDEX: 1, 17, 21].
-*   **Long-Horizon Software Engineering & Repository Maintenance**
-    *   *Application:* Powers autonomous software development networks (such as Devin or SWE-bench agent architectures) [INDEX: 1]. The test-time compute layer forces the model to treat coding tickets as a closed-loop search problem: reading file trees, generating patch code scripts, analyzing compiler errors inside local sandboxes, and backtracking to refactor scripts recursively until all validation tests pass [INDEX: 1].
-*   **Mission-Critical Legal & Financial Forensic Audits**
-    *   *Application:* Reviews multi-departmental corporate profiles and intricate litigation records [INDEX: 1]. Inference-time search scaling allows the agent to construct detailed multi-hop verification paths, dynamically evaluating compliance variances across decades of conflicting regulatory text files before finalizing its executive report [INDEX: 1].
+| Infrastructure Application | Description & Details | Year First Used | First Paper Link |
+| :--- | :--- | :--- | :--- |
+| **Automated Competitive Mathematics Proving & Science Discoveries** | *Application:* Solves extreme combinatorial reasoning puzzles, International Math Olympiads (IMO), and chemistry simulation derivations. By scaling up test-time search compute over Lean 4 or SymPy verifiers, models autonomously test identities, cross-reference data boundaries, and evaluate millions of symbolic paths to generate provably correct scientific proofs [INDEX: 1, 17, 21]. | 2024 | [Trinh et al., 2024](https://www.nature.com/articles/s41586-023-06747-5) |
+| **Long-Horizon Software Engineering & Repository Maintenance** | *Application:* Powers autonomous software development networks (such as Devin or SWE-bench agent architectures) [INDEX: 1]. The test-time compute layer forces the model to treat coding tickets as a closed-loop search problem: reading file trees, generating patch code scripts, analyzing compiler errors inside local sandboxes, and backtracking to refactor scripts recursively until all validation tests pass [INDEX: 1]. | 2023 | [Jimenez et al., 2023](https://arxiv.org/abs/2310.06770) |
+| **Mission-Critical Legal & Financial Forensic Audits** | *Application:* Reviews multi-departmental corporate profiles and intricate litigation records [INDEX: 1]. Inference-time search scaling allows the agent to construct detailed multi-hop verification paths, dynamically evaluating compliance variances across decades of conflicting regulatory text files before finalizing its executive report [INDEX: 1]. | 2023 | [Guha et al., 2023](https://arxiv.org/abs/2308.11462) |
 
 ---
 
