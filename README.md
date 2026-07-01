@@ -1,11 +1,21 @@
+<!--
+meta_description: "A curated list of awesome Test-Time Computation (inference-time compute scaling) resources, papers, architectures, and applications like OpenAI o1, o3, and DeepSeek-R1."
+keywords: "test-time compute, inference scaling, system 2 reasoning, o1, DeepSeek-R1, MCTS, tree of thoughts, speculative verification, LLM serving"
+-->
+
 <div align="center">
   <img src="assets/banner.svg" alt="Awesome Test-Time Computation Banner" width="100%">
 </div>
 
 # Awesome Test-Time Computation 🚀🔍
+
+<div align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a> <a href="https://github.com/ishandutta2007/Awesome-Test-Time-Computation/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Test-Time-Computation?style=flat-square" alt="Stars"/></a> <a href="https://github.com/ishandutta2007/Awesome-Test-Time-Computation/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Test-Time-Computation?style=flat-square" alt="Forks"/></a> <a href="https://github.com/ishandutta2007/Awesome-Test-Time-Computation/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ishandutta2007/Awesome-Test-Time-Computation?style=flat-square" alt="License"/></a>
+</div>
+
 ## 🧠 Test-Time Computation: Evolution, Variants, Types, & Applications
 
-Test-Time Computation—also referred to as inference-time compute scaling, System 2 execution, or lookahead search—is an advanced architectural and prompt-engineering paradigm that scales a model’s cognitive reasoning capacity during the inference phase. Traditionally, deep learning models operate under a rigid **Constant-Time Inference Wall**: for any given input, a model executes a fixed number of floating-point operations (FLOPs) determined strictly by its parameter count, spending identical compute tokens to answer a trivial question versus a complex, multi-hop logical proof. 
+Test-Time Computation—also referred to as **inference-time compute scaling**, **System 2 execution**, or **lookahead search**—is an advanced architectural and prompt-engineering paradigm that scales a model’s cognitive reasoning capacity during the inference phase. Traditionally, deep learning models operate under a rigid **Constant-Time Inference Wall**: for any given input, a model executes a fixed number of floating-point operations (FLOPs) determined strictly by its parameter count, spending identical compute tokens to answer a trivial question versus a complex, multi-hop logical proof. 
 
 Test-Time Computation breaks this restriction, shifting AI from rapid, intuitive next-token predictions (System 1) to deliberate, multi-path, and self-correcting algorithmic processing (System 2). By allowing models to allocate additional processing tokens at runtime to explore alternative hypotheses, query programmatic verifiers, and backtrack from errors, inference compute scaling unlocks a massive, predictable surge in reasoning capabilities, mimicking the human habit of "thinking longer before answering."
 
